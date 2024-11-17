@@ -23,3 +23,5 @@ function hasCycle(graph) {
     }
     return false; //No cycle detected. 
 }
+
+module.exports = { hasCycle }; 
