@@ -1,17 +1,17 @@
-const { hasCycle } = require('./code');
-const assert = require('assert');
+const { hasCycle } = require('./code'); // Wrote this 
+const assert = require('assert'); // Wrote this 
 
 // Test cases
 let graph, expected;
 
 graph = [];
 expected = false;
-assert.strictEqual(hasCycle(graph), expected, 'Test 1 Failed: Empty graph');
+assert.strictEqual(hasCycle(graph), expected, 'Test 1 Failed: Empty graph'); // wrote all of this 
 
 graph = [[]];
 expected = false;
-assert.strictEqual(hasCycle(graph), expected, 'Test 2 Failed: Single node with no edges');
-
+assert.strictEqual(hasCycle(graph), expected, 'Test 2 Failed: Single node with no edges'); // wrote all of this 
+// From this graph down is what I borrowed. I also added the debugging parts to see what test it was failing and to adjust my code. 
 graph = [
     [1, 2],
     [],
