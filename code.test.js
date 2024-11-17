@@ -1,53 +1,74 @@
+
 const fs = require('fs');
 const assert = require('assert');
 
 eval(fs.readFileSync('code.js')+'');
 
-describe('Cycle Detection Tests', () => {
-    test('Graph with a cycle', () => {
-        // Graph: 0 - 1, 1 - 2, 2 - 0 forms a cycle.
-        const graph = {
-            0: [1],
-            1: [0, 2],
-            2: [1, 0],
-        };
-        expect(hasCycle(graph)).toBe(true); // Should detect a cycle.
-    });
+var graph = []
+assert(JSON.stringify(hasCycle(graph)) == 'false');
+// I wrote this one
 
-    test('Graph without a cycle', () => {
-        // Graph: 0 - 1, 1 - 2 does not form a cycle.
-        const graph = {
-            0: [1],
-            1: [0, 2],
-            2: [1],
-        };
-        expect(hasCycle(graph)).toBe(false); // Should not detect a cycle.
-    });
+var graph = [[]]
+assert(JSON.stringify(hasCycle(graph)) == 'false');
+// I wrote this one. 
 
-    test('Disconnected graph without cycles', () => {
-        // Graph: 0 - 1, 2 - 3 are two disconnected components, no cycles.
-        const graph = {
-            0: [1],
-            1: [0],
-            2: [3],
-            3: [2],
-        };
-        expect(hasCycle(graph)).toBe(false); // Should not detect a cycle.
-    });
+var graph = [
+    [1, 2],
+    [],
+    [3],
+    [0]
+];
+var expected = true;
+assert(hasCycle(graph) == expected);
 
-    test('Single vertex graph', () => {
-        // Graph with one node and no edges.
-        const graph = {
-            0: [],
-        };
-        expect(hasCycle(graph)).toBe(false); // Single vertex cannot have a cycle.
-    });
 
-    test('Graph with self-loop', () => {
-        // Graph: 0 - 0 (self-loop) is a cycle.
-        const graph = {
-            0: [0],
-        };
-        expect(hasCycle(graph)).toBe(true); // Should detect a cycle due to self-loop.
-    });
-});
+var graph = [
+    [1, 2],
+    [],
+    [3],
+    [1]
+];
+var expected = false;
+assert(hasCycle(graph) == expected);
+
+
+var graph = [
+    [1, 3],
+    [2, 3],
+    [3],
+    [4],
+    []
+];
+var expected = false;
+assert(hasCycle(graph) == expected);
+
+
+//This is the example from the class notes
+var graph = [
+  [1, 2, 3],       //node A
+  [2, 4, 5],       //node B
+  [0, 4],          //node C
+  [2],             //node D
+  [3, 6],          //node E
+  [7],             //node F
+  [4, 5],          //node G
+  [6]              //node H
+];
+var expected = true;
+assert(hasCycle(graph) == expected);
+
+
+//This graph example is from https://www.tutorialspoint.com/design_and_analysis_of_algorithms/design_and_analysis_of_algorithms_shortest_paths.htm
+var graph = [
+  [1, 2],
+  [3, 4],
+  [1, 6],
+  [2, 4, 6],
+  [5, 6, 7],
+  [8, 4],
+  [7, 2],
+  [5, 3],
+  []
+];
+var expected = true;
+assert(hasCycle(graph) == expected);
