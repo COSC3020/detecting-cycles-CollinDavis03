@@ -1,63 +1,59 @@
 const { hasCycle } = require('./code');
 const assert = require('assert');
 
-var graph = []
-var expected = false; 
-assert(hasCycle(graph) === expected); // Empty graph
+// Test cases
+let graph, expected;
 
-var graph = [[]];
-var expected = false;
-assert(hasCycle(graph) === expected);
-// I wrote this one
+graph = [];
+expected = false;
+assert.strictEqual(hasCycle(graph), expected, 'Test 1 Failed: Empty graph');
 
-var graph = [
+graph = [[]];
+expected = false;
+assert.strictEqual(hasCycle(graph), expected, 'Test 2 Failed: Single node with no edges');
+
+graph = [
     [1, 2],
     [],
     [3],
     [0]
 ];
-var expected = true;
-assert(hasCycle(graph) == expected);
+expected = true;
+assert.strictEqual(hasCycle(graph), expected, 'Test 3 Failed: Cycle present');
 
-
-var graph = [
+graph = [
     [1, 2],
     [],
     [3],
     [1]
 ];
-var expected = false;
-assert(hasCycle(graph) == expected);
+expected = false;
+assert.strictEqual(hasCycle(graph), expected, 'Test 4 Failed: No cycle');
 
-
-var graph = [
+graph = [
     [1, 3],
     [2, 3],
     [3],
     [4],
     []
 ];
-var expected = false;
-assert(hasCycle(graph) == expected);
+expected = false;
+assert.strictEqual(hasCycle(graph), expected, 'Test 5 Failed: Disconnected graph, no cycle');
 
-
-//This is the example from the class notes
-var graph = [
-  [1, 2, 3],       //node A
-  [2, 4, 5],       //node B
-  [0, 4],          //node C
-  [2],             //node D
-  [3, 6],          //node E
-  [7],             //node F
-  [4, 5],          //node G
-  [6]              //node H
+graph = [
+  [1, 2, 3], // Node A
+  [2, 4, 5], // Node B
+  [0, 4],    // Node C
+  [2],       // Node D
+  [3, 6],    // Node E
+  [7],       // Node F
+  [4, 5],    // Node G
+  [6]        // Node H
 ];
-var expected = true;
-assert(hasCycle(graph) == expected);
+expected = true;
+assert.strictEqual(hasCycle(graph), expected, 'Test 6 Failed: Class notes example');
 
-
-//This graph example is from https://www.tutorialspoint.com/design_and_analysis_of_algorithms/design_and_analysis_of_algorithms_shortest_paths.htm
-var graph = [
+graph = [
   [1, 2],
   [3, 4],
   [1, 6],
@@ -68,7 +64,7 @@ var graph = [
   [5, 3],
   []
 ];
-var expected = true;
-assert(hasCycle(graph) == expected);
+expected = true;
+assert.strictEqual(hasCycle(graph), expected, 'Test 7 Failed: Tutorialspoint example');
 
-console.log("All Tests Passed!"); 
+console.log('All tests passed!');
