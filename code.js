@@ -1,27 +1,29 @@
 function hasCycle(graph) {
     //Track the visited nodes
     const visited = new Set(); 
+    const recStack = new Set(); 
     //DFS = Depth First Search 
-    function DFS(node, parent) { 
-        visited.add(node); //Mark current node visited
+    function DFS(node) { 
+        if (recStack.has(node)) return true; // Cycle detected
+        if (visited.has(node)) return false; // Node already fully explored
 
-        //Iterate over all neighbors of current node
+        visited.add(node);
+        recStack.add(node);
+        
         for (const neighbor of graph[node] || []) {
-            if (!visited.has(neighbor)) {
-                if (DFS(neighbor, node)) return true; //Recur on unvisited neighbors
-            } else if (neighbor !== parent) {
-                return true; //cycle detected 
-            }
+            if (DFS(neighbor)) return true; // Recur for neighbors
         }
-        return false; //No cycle detected at all
+
+        recStack.delete(node); // Remove node from recursion stack
+        return false;
     }
-    //Handle disconnected components 
-    for (let node = 0; node < graph.length; node++) {
-        if (!visited.has(Number(node))) {
-            if (DFS(Number(node), -1)) return true; //Start DFS if node has not been visited
+    
+    or (let node = 0; node < graph.length; node++) {
+        if (!visited.has(node)) {
+            if (DFS(node)) return true;
         }
     }
-    return false; //No cycle detected. 
+    return false;
 }
 
 module.exports = { hasCycle }; 
