@@ -4,13 +4,16 @@ const assert = require('assert');
 
 eval(fs.readFileSync('code.js')+'');
 
-var graph = []
-assert(JSON.stringify(hasCycle(graph)) == 'false');
-// I wrote this one
 
-var graph = [[]]
-assert(JSON.stringify(hasCycle(graph)) == 'false');
-// I wrote this one. 
+
+var graph = []
+var expected = false; 
+assert(hasCycle(graph) === expected); // Empty graph
+
+var graph = [[]];
+var expected = false;
+assert(hasCycle(graph) === expected);
+// I wrote this one
 
 var graph = [
     [1, 2],
@@ -72,3 +75,5 @@ var graph = [
 ];
 var expected = true;
 assert(hasCycle(graph) == expected);
+
+console.log("All Tests Passed!"); 
