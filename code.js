@@ -6,7 +6,7 @@ function hasCycle(graph) {
         visited.add(node); //Mark current node visited
 
         //Iterate over all neighbors of current node
-        for (const neighbor of graph[node]) {
+        for (const neighbor of graph[node] || []) {
             if (!visited.has(neighbor)) {
                 if (DFS(neighbor, node)) return true; //Recur on unvisited neighbors
             } else if (neighbor !== parent) {
@@ -16,9 +16,9 @@ function hasCycle(graph) {
         return false; //No cycle detected at all
     }
     //Handle disconnected components 
-    for (const node in graph) {
+    for (let node = 0; node < graph.length; node++) {
         if (!visited.has(Number(node))) {
-            if (DFS(Number(node), - 1)) return true; //Start DFS if node has not been visited
+            if (DFS(Number(node), -1)) return true; //Start DFS if node has not been visited
         }
     }
     return false; //No cycle detected. 
