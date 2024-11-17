@@ -1,10 +1,5 @@
-
-const fs = require('fs');
+const { hasCycle } = require('./code');
 const assert = require('assert');
-
-eval(fs.readFileSync('code.js')+'');
-
-
 
 var graph = []
 var expected = false; 
